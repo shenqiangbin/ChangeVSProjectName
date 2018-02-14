@@ -59,6 +59,9 @@ namespace ChangeVSProjectName
             FileInfo[] files = dir.GetFiles("*.*", SearchOption.TopDirectoryOnly);
             foreach (var item in files)
             {
+                if (Path.GetExtension(item.FullName) == ".dll")
+                    continue;
+
                 if (item.Name.Contains(text))
                     ShowMsg(item.FullName);
 
@@ -76,7 +79,7 @@ namespace ChangeVSProjectName
             DirectoryInfo[] children = dir.GetDirectories();
             foreach (var item in children)
             {
-                if (item.Name == "bin" || item.Name == "obj")
+                if (IsIgnoreThis(item.Name))
                     continue;
 
                 FindTextInDir(item, text);
@@ -86,6 +89,14 @@ namespace ChangeVSProjectName
             {
                 ShowMsg(dir.FullName);
             }
+        }
+
+        private bool IsIgnoreThis(string fileName)
+        {
+            if (fileName == "bin" || fileName == "obj" || fileName.Contains(".git"))
+                return true;
+            else
+                return false;
         }
 
         private void ShowMsg(string msg)
@@ -110,13 +121,7 @@ namespace ChangeVSProjectName
                 }
                 catch (Exception ex)
                 {
-                    if (rtxResult.InvokeRequired)
-                    {
-                        rtxResult.Invoke(new Action<string>((m) =>
-                        {
-                            rtxResult.Text = ex.Message;
-                        }), "");
-                    }
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
@@ -125,13 +130,13 @@ namespace ChangeVSProjectName
                         btnExport.Invoke(new Action<string>((m) =>
                         {
                             btnExport.Enabled = true;
-                            btnExport.Text = "开始导出";
+                            btnExport.Text = "开始替换";
                         }), "");
                     }
                     else
                     {
                         btnExport.Enabled = true;
-                        btnExport.Text = "开始导出";
+                        btnExport.Text = "开始替换";
                     }
 
                     if (rtxResult.InvokeRequired)
@@ -151,6 +156,9 @@ namespace ChangeVSProjectName
             FileInfo[] files = dir.GetFiles("*.*", SearchOption.TopDirectoryOnly);
             foreach (var item in files)
             {
+                if (Path.GetExtension(item.FullName) == ".dll")
+                    continue;
+
                 string content = File.ReadAllText(item.FullName);
                 File.WriteAllText(item.FullName, content.Replace(text, newText));
 
@@ -165,7 +173,7 @@ namespace ChangeVSProjectName
             DirectoryInfo[] children = dir.GetDirectories();
             foreach (var item in children)
             {
-                if (item.Name == "bin" || item.Name == "obj")
+                if (IsIgnoreThis(item.Name))
                     continue;
 
                 FindTextInDirAndReplace(item, text, newText);

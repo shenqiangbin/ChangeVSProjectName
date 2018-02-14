@@ -43,12 +43,13 @@ namespace ChangeVSProjectName
             this.btnSearch = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNewText = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(419, 53);
+            this.btnSelect.Location = new System.Drawing.Point(419, 62);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 0;
@@ -58,7 +59,7 @@ namespace ChangeVSProjectName
             // 
             // textBoxSelectPath
             // 
-            this.textBoxSelectPath.Location = new System.Drawing.Point(95, 54);
+            this.textBoxSelectPath.Location = new System.Drawing.Point(95, 63);
             this.textBoxSelectPath.Name = "textBoxSelectPath";
             this.textBoxSelectPath.Size = new System.Drawing.Size(318, 21);
             this.textBoxSelectPath.TabIndex = 1;
@@ -69,7 +70,7 @@ namespace ChangeVSProjectName
             this.btnExport.Location = new System.Drawing.Point(33, 351);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(465, 39);
-            this.btnExport.TabIndex = 2;
+            this.btnExport.TabIndex = 4;
             this.btnExport.Text = "开始替换";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
@@ -77,7 +78,7 @@ namespace ChangeVSProjectName
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 57);
+            this.label1.Location = new System.Drawing.Point(33, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 3;
@@ -113,7 +114,7 @@ namespace ChangeVSProjectName
             this.txtKeyWords.Location = new System.Drawing.Point(95, 94);
             this.txtKeyWords.Name = "txtKeyWords";
             this.txtKeyWords.Size = new System.Drawing.Size(318, 21);
-            this.txtKeyWords.TabIndex = 6;
+            this.txtKeyWords.TabIndex = 2;
             // 
             // label3
             // 
@@ -146,7 +147,7 @@ namespace ChangeVSProjectName
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 133);
+            this.label4.Location = new System.Drawing.Point(12, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 12);
             this.label4.TabIndex = 3;
@@ -154,13 +155,25 @@ namespace ChangeVSProjectName
             // 
             // txtNewText
             // 
-            this.txtNewText.Location = new System.Drawing.Point(95, 129);
+            this.txtNewText.Location = new System.Drawing.Point(95, 126);
             this.txtNewText.Name = "txtNewText";
             this.txtNewText.Size = new System.Drawing.Size(318, 21);
-            this.txtNewText.TabIndex = 6;
+            this.txtNewText.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(33, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(403, 12);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "注意：先将git隐藏文件和user等文件删除, package文件夹也删除。";
             // 
             // Form1
             // 
+            this.AcceptButton = this.btnExport;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 426);
@@ -169,6 +182,7 @@ namespace ChangeVSProjectName
             this.Controls.Add(this.txtKeyWords);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -204,6 +218,7 @@ namespace ChangeVSProjectName
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNewText;
+        private System.Windows.Forms.Label label5;
     }
 }
 
