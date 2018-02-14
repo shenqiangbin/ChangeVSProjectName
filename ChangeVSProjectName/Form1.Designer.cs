@@ -131,7 +131,7 @@ namespace ChangeVSProjectName
             this.rtxResult.Name = "rtxResult";
             this.rtxResult.Size = new System.Drawing.Size(465, 189);
             this.rtxResult.TabIndex = 7;
-            this.rtxResult.Text = "";
+            this.rtxResult.Text = "状态...";
             this.rtxResult.WordWrap = false;
             // 
             // btnSearch
