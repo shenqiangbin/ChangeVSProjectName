@@ -1,13 +1,16 @@
 using ChangeVSProjectName.Lib;
+using KnightsWarriorAutoupdater;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace ChangeVSProjectName
 {
@@ -15,7 +18,59 @@ namespace ChangeVSProjectName
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();           
+        }
+
+        private void CheckUpdate()
+        {
+            #region check and download new version program
+            bool bHasError = false;
+            IAutoUpdater autoUpdater = new AutoUpdater();
+            try
+            {
+                autoUpdater.Update();
+            }
+            catch (WebException exp)
+            {
+                MessageBox.Show("Can not find the specified resource");
+                bHasError = true;
+            }
+            catch (XmlException exp)
+            {
+                bHasError = true;
+                MessageBox.Show("Download the upgrade file error");
+            }
+            catch (NotSupportedException exp)
+            {
+                bHasError = true;
+                MessageBox.Show("Upgrade address configuration error");
+            }
+            catch (ArgumentException exp)
+            {
+                bHasError = true;
+                MessageBox.Show("Download the upgrade file error");
+            }
+            catch (Exception ex)
+            {
+                bHasError = true;
+                MessageBox.Show("An error occurred during the upgrade process");
+            }
+            finally
+            {
+                if (bHasError == true)
+                {
+                    try
+                    {
+                        autoUpdater.RollBack();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Log the message to your file or database
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            #endregion
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -184,6 +239,11 @@ namespace ChangeVSProjectName
                 var newPath = Path.Combine(Path.GetDirectoryName(dir.FullName), dir.Name.Replace(text, newText));
                 Directory.Move(dir.FullName, newPath);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            CheckUpdate();
         }
     }
 
