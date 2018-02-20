@@ -44,6 +44,7 @@ namespace ChangeVSProjectName
             this.label4 = new System.Windows.Forms.Label();
             this.txtNewText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +97,8 @@ namespace ChangeVSProjectName
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 404);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(534, 22);
@@ -171,6 +173,12 @@ namespace ChangeVSProjectName
             this.label5.TabIndex = 4;
             this.label5.Text = "注意：先将git隐藏文件和user等文件删除, package文件夹也删除。";
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(81, 17);
+            this.toolStripStatusLabel2.Text = "版本：1.0.0.1";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnExport;
@@ -220,6 +228,7 @@ namespace ChangeVSProjectName
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNewText;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 
