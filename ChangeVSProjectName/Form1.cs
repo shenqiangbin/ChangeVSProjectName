@@ -215,7 +215,8 @@ namespace ChangeVSProjectName
                     continue;
 
                 string content = File.ReadAllText(item.FullName);
-                File.WriteAllText(item.FullName, content.Replace(text, newText));
+                var encoding = new UTF8Encoding(true);
+                File.WriteAllText(item.FullName, content.Replace(text, newText), encoding);
 
                 if (item.Name.Contains(text))
                 {
